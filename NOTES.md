@@ -2,7 +2,8 @@
 1. I used the sample `accounts_large.json` solely to test performance and the code. I did not create a separate endpoint for it.
 2. No real proper error handling was implemented. Simple handling of Malformed Request - 400 request was done.
 3. Filtering is strict, no `LIKE` queries or any sort fuzzy filtering.
-4. I would also typically .gitignore the `lib` folder from being pushed into the github repo, but for the sake of the this exercise, I kept it there to allow it to be ran for validation in case something doesn't work with yarn commands and development environment.
+4. Typically I would add doc string as well as more comments in order to describe business problems particular methods/code solves as well as describing what the code is doing for future readability purposes.
+5. I would also typically .gitignore the `lib` folder from being pushed into the github repo, but for the sake of the this exercise, I kept it there to allow it to be ran for validation in case something doesn't work with yarn commands and development environment.
 
 # Getting Started
 1. Run `yarn install`
