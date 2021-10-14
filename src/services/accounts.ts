@@ -3,13 +3,12 @@ import Pagination from "../utils/pagination";
 import Sort from "../utils/sort";
 
 export class AccountFilter {
-    whitelist: Array<string> = ['country', 'mfa', 'name'];
+    whitelist: Array<string> = ['country', 'mfa', 'firstName', 'lastName'];
     filters?: any
 
     constructor(query: any) {
         if('filter' in query) {
             let filters = Object.keys(query.filter);
-
             filters.forEach((element: string) => {
                 if (!this.whitelist.includes(element)) {
                     throw `The filter: ${element} cannot be used`;
@@ -21,10 +20,12 @@ export class AccountFilter {
     }
 
     public filterItems(listItems: Array<any>) : Array<any>{
-        for (const filter of Object.keys(this.filters)) {
-            listItems = listItems.filter((element) => {
-                return this.filters[filter] == element[filter];
-            });
+        if (this.filters) {
+            for (const filter of Object.keys(this.filters)) {
+                listItems = listItems.filter((element) => {
+                    return this.filters[filter] == element[filter];
+                });
+            }
         }
 
         return listItems
@@ -44,7 +45,7 @@ export class AccountService {
 
     public getAccounts() {
         var accountList = accounts;
-        
+
         if (this.filters) {
             accountList = this.filters.filterItems(accountList);
         }

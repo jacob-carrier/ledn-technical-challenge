@@ -3,16 +3,13 @@ export default class Pagination {
     limit: number = 10;
 
     constructor(query: any) {
-        if (!('page' in query)) {
-            throw 'The page number parameter has not been supplied as part of the query';
+        if (('page' in query)) {
+            this.page = parseInt(query.page);
         }
 
-        if (!('limit' in query)) {
-            throw 'The size parameter has not been supplied as part of the query';
+        if (('limit' in query)) {
+            this.limit = parseInt(query.limit);
         }
-
-        this.page = parseInt(query.page);
-        this.limit = parseInt(query.limit);
     }
 
     public get start() {
